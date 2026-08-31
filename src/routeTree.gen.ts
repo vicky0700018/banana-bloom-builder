@@ -17,6 +17,7 @@ import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as AdminAboutRouteImport } from './routes/admin.about'
 import { Route as AdminActivitiesRouteImport } from './routes/admin.activities'
+import { Route as AdminContactRouteImport } from './routes/admin.contact'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminFacilitiesRouteImport } from './routes/admin.facilities'
 import { Route as AdminFeaturesRouteImport } from './routes/admin.features'
@@ -64,6 +65,11 @@ const AdminAboutRoute = AdminAboutRouteImport.update({
 const AdminActivitiesRoute = AdminActivitiesRouteImport.update({
   id: '/admin/activities',
   path: '/admin/activities',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminContactRoute = AdminContactRouteImport.update({
+  id: '/admin/contact',
+  path: '/admin/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminDashboardRoute = AdminDashboardRouteImport.update({
@@ -116,6 +122,7 @@ export interface FileRoutesByFullPath {
   '/programs': typeof ProgramsRoute
   '/admin/about': typeof AdminAboutRoute
   '/admin/activities': typeof AdminActivitiesRoute
+  '/admin/contact': typeof AdminContactRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/facilities': typeof AdminFacilitiesRoute
   '/admin/features': typeof AdminFeaturesRoute
@@ -134,6 +141,7 @@ export interface FileRoutesByTo {
   '/programs': typeof ProgramsRoute
   '/admin/about': typeof AdminAboutRoute
   '/admin/activities': typeof AdminActivitiesRoute
+  '/admin/contact': typeof AdminContactRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/facilities': typeof AdminFacilitiesRoute
   '/admin/features': typeof AdminFeaturesRoute
@@ -153,6 +161,7 @@ export interface FileRoutesById {
   '/programs': typeof ProgramsRoute
   '/admin/about': typeof AdminAboutRoute
   '/admin/activities': typeof AdminActivitiesRoute
+  '/admin/contact': typeof AdminContactRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/facilities': typeof AdminFacilitiesRoute
   '/admin/features': typeof AdminFeaturesRoute
@@ -173,6 +182,7 @@ export interface FileRouteTypes {
     | '/programs'
     | '/admin/about'
     | '/admin/activities'
+    | '/admin/contact'
     | '/admin/dashboard'
     | '/admin/facilities'
     | '/admin/features'
@@ -191,6 +201,7 @@ export interface FileRouteTypes {
     | '/programs'
     | '/admin/about'
     | '/admin/activities'
+    | '/admin/contact'
     | '/admin/dashboard'
     | '/admin/facilities'
     | '/admin/features'
@@ -209,6 +220,7 @@ export interface FileRouteTypes {
     | '/programs'
     | '/admin/about'
     | '/admin/activities'
+    | '/admin/contact'
     | '/admin/dashboard'
     | '/admin/facilities'
     | '/admin/features'
@@ -228,6 +240,7 @@ export interface RootRouteChildren {
   ProgramsRoute: typeof ProgramsRoute
   AdminAboutRoute: typeof AdminAboutRoute
   AdminActivitiesRoute: typeof AdminActivitiesRoute
+  AdminContactRoute: typeof AdminContactRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminFacilitiesRoute: typeof AdminFacilitiesRoute
   AdminFeaturesRoute: typeof AdminFeaturesRoute
@@ -294,6 +307,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/activities'
       fullPath: '/admin/activities'
       preLoaderRoute: typeof AdminActivitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/contact': {
+      id: '/admin/contact'
+      path: '/admin/contact'
+      fullPath: '/admin/contact'
+      preLoaderRoute: typeof AdminContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/dashboard': {
@@ -364,6 +384,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProgramsRoute: ProgramsRoute,
   AdminAboutRoute: AdminAboutRoute,
   AdminActivitiesRoute: AdminActivitiesRoute,
+  AdminContactRoute: AdminContactRoute,
   AdminDashboardRoute: AdminDashboardRoute,
   AdminFacilitiesRoute: AdminFacilitiesRoute,
   AdminFeaturesRoute: AdminFeaturesRoute,
