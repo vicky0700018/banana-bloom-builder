@@ -19,6 +19,7 @@ import { Route as AdminAboutRouteImport } from './routes/admin.about'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminHeroRouteImport } from './routes/admin.hero'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminProgramsRouteImport } from './routes/admin.programs'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -70,6 +71,11 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminProgramsRoute = AdminProgramsRouteImport.update({
+  id: '/admin/programs',
+  path: '/admin/programs',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/hero': typeof AdminHeroRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/programs': typeof AdminProgramsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -94,6 +101,7 @@ export interface FileRoutesByTo {
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/hero': typeof AdminHeroRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/programs': typeof AdminProgramsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -107,6 +115,7 @@ export interface FileRoutesById {
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/hero': typeof AdminHeroRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/programs': typeof AdminProgramsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -121,6 +130,7 @@ export interface FileRouteTypes {
     | '/admin/dashboard'
     | '/admin/hero'
     | '/admin/login'
+    | '/admin/programs'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -133,6 +143,7 @@ export interface FileRouteTypes {
     | '/admin/dashboard'
     | '/admin/hero'
     | '/admin/login'
+    | '/admin/programs'
   id:
     | '__root__'
     | '/'
@@ -145,6 +156,7 @@ export interface FileRouteTypes {
     | '/admin/dashboard'
     | '/admin/hero'
     | '/admin/login'
+    | '/admin/programs'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -158,6 +170,7 @@ export interface RootRouteChildren {
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminHeroRoute: typeof AdminHeroRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminProgramsRoute: typeof AdminProgramsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -232,6 +245,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/programs': {
+      id: '/admin/programs'
+      path: '/admin/programs'
+      fullPath: '/admin/programs'
+      preLoaderRoute: typeof AdminProgramsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -246,6 +266,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminDashboardRoute: AdminDashboardRoute,
   AdminHeroRoute: AdminHeroRoute,
   AdminLoginRoute: AdminLoginRoute,
+  AdminProgramsRoute: AdminProgramsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
