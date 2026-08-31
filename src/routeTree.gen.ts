@@ -18,6 +18,7 @@ import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as AdminAboutRouteImport } from './routes/admin.about'
 import { Route as AdminActivitiesRouteImport } from './routes/admin.activities'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
+import { Route as AdminFacilitiesRouteImport } from './routes/admin.facilities'
 import { Route as AdminFeaturesRouteImport } from './routes/admin.features'
 import { Route as AdminGalleryRouteImport } from './routes/admin.gallery'
 import { Route as AdminHeroRouteImport } from './routes/admin.hero'
@@ -70,6 +71,11 @@ const AdminDashboardRoute = AdminDashboardRouteImport.update({
   path: '/admin/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminFacilitiesRoute = AdminFacilitiesRouteImport.update({
+  id: '/admin/facilities',
+  path: '/admin/facilities',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminFeaturesRoute = AdminFeaturesRouteImport.update({
   id: '/admin/features',
   path: '/admin/features',
@@ -111,6 +117,7 @@ export interface FileRoutesByFullPath {
   '/admin/about': typeof AdminAboutRoute
   '/admin/activities': typeof AdminActivitiesRoute
   '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/facilities': typeof AdminFacilitiesRoute
   '/admin/features': typeof AdminFeaturesRoute
   '/admin/gallery': typeof AdminGalleryRoute
   '/admin/hero': typeof AdminHeroRoute
@@ -128,6 +135,7 @@ export interface FileRoutesByTo {
   '/admin/about': typeof AdminAboutRoute
   '/admin/activities': typeof AdminActivitiesRoute
   '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/facilities': typeof AdminFacilitiesRoute
   '/admin/features': typeof AdminFeaturesRoute
   '/admin/gallery': typeof AdminGalleryRoute
   '/admin/hero': typeof AdminHeroRoute
@@ -146,6 +154,7 @@ export interface FileRoutesById {
   '/admin/about': typeof AdminAboutRoute
   '/admin/activities': typeof AdminActivitiesRoute
   '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/facilities': typeof AdminFacilitiesRoute
   '/admin/features': typeof AdminFeaturesRoute
   '/admin/gallery': typeof AdminGalleryRoute
   '/admin/hero': typeof AdminHeroRoute
@@ -165,6 +174,7 @@ export interface FileRouteTypes {
     | '/admin/about'
     | '/admin/activities'
     | '/admin/dashboard'
+    | '/admin/facilities'
     | '/admin/features'
     | '/admin/gallery'
     | '/admin/hero'
@@ -182,6 +192,7 @@ export interface FileRouteTypes {
     | '/admin/about'
     | '/admin/activities'
     | '/admin/dashboard'
+    | '/admin/facilities'
     | '/admin/features'
     | '/admin/gallery'
     | '/admin/hero'
@@ -199,6 +210,7 @@ export interface FileRouteTypes {
     | '/admin/about'
     | '/admin/activities'
     | '/admin/dashboard'
+    | '/admin/facilities'
     | '/admin/features'
     | '/admin/gallery'
     | '/admin/hero'
@@ -217,6 +229,7 @@ export interface RootRouteChildren {
   AdminAboutRoute: typeof AdminAboutRoute
   AdminActivitiesRoute: typeof AdminActivitiesRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminFacilitiesRoute: typeof AdminFacilitiesRoute
   AdminFeaturesRoute: typeof AdminFeaturesRoute
   AdminGalleryRoute: typeof AdminGalleryRoute
   AdminHeroRoute: typeof AdminHeroRoute
@@ -290,6 +303,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminDashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/facilities': {
+      id: '/admin/facilities'
+      path: '/admin/facilities'
+      fullPath: '/admin/facilities'
+      preLoaderRoute: typeof AdminFacilitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/features': {
       id: '/admin/features'
       path: '/admin/features'
@@ -345,6 +365,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminAboutRoute: AdminAboutRoute,
   AdminActivitiesRoute: AdminActivitiesRoute,
   AdminDashboardRoute: AdminDashboardRoute,
+  AdminFacilitiesRoute: AdminFacilitiesRoute,
   AdminFeaturesRoute: AdminFeaturesRoute,
   AdminGalleryRoute: AdminGalleryRoute,
   AdminHeroRoute: AdminHeroRoute,
