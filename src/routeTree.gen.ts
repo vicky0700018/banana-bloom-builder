@@ -16,6 +16,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as AdminAboutRouteImport } from './routes/admin.about'
+import { Route as AdminActivitiesRouteImport } from './routes/admin.activities'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminHeroRouteImport } from './routes/admin.hero'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
@@ -56,6 +57,11 @@ const AdminAboutRoute = AdminAboutRouteImport.update({
   path: '/admin/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminActivitiesRoute = AdminActivitiesRouteImport.update({
+  id: '/admin/activities',
+  path: '/admin/activities',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminDashboardRoute = AdminDashboardRouteImport.update({
   id: '/admin/dashboard',
   path: '/admin/dashboard',
@@ -85,6 +91,7 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof GalleryRoute
   '/programs': typeof ProgramsRoute
   '/admin/about': typeof AdminAboutRoute
+  '/admin/activities': typeof AdminActivitiesRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/hero': typeof AdminHeroRoute
   '/admin/login': typeof AdminLoginRoute
@@ -98,6 +105,7 @@ export interface FileRoutesByTo {
   '/gallery': typeof GalleryRoute
   '/programs': typeof ProgramsRoute
   '/admin/about': typeof AdminAboutRoute
+  '/admin/activities': typeof AdminActivitiesRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/hero': typeof AdminHeroRoute
   '/admin/login': typeof AdminLoginRoute
@@ -112,6 +120,7 @@ export interface FileRoutesById {
   '/gallery': typeof GalleryRoute
   '/programs': typeof ProgramsRoute
   '/admin/about': typeof AdminAboutRoute
+  '/admin/activities': typeof AdminActivitiesRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/hero': typeof AdminHeroRoute
   '/admin/login': typeof AdminLoginRoute
@@ -127,6 +136,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/programs'
     | '/admin/about'
+    | '/admin/activities'
     | '/admin/dashboard'
     | '/admin/hero'
     | '/admin/login'
@@ -140,6 +150,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/programs'
     | '/admin/about'
+    | '/admin/activities'
     | '/admin/dashboard'
     | '/admin/hero'
     | '/admin/login'
@@ -153,6 +164,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/programs'
     | '/admin/about'
+    | '/admin/activities'
     | '/admin/dashboard'
     | '/admin/hero'
     | '/admin/login'
@@ -167,6 +179,7 @@ export interface RootRouteChildren {
   GalleryRoute: typeof GalleryRoute
   ProgramsRoute: typeof ProgramsRoute
   AdminAboutRoute: typeof AdminAboutRoute
+  AdminActivitiesRoute: typeof AdminActivitiesRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminHeroRoute: typeof AdminHeroRoute
   AdminLoginRoute: typeof AdminLoginRoute
@@ -224,6 +237,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/activities': {
+      id: '/admin/activities'
+      path: '/admin/activities'
+      fullPath: '/admin/activities'
+      preLoaderRoute: typeof AdminActivitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/dashboard': {
       id: '/admin/dashboard'
       path: '/admin/dashboard'
@@ -263,6 +283,7 @@ const rootRouteChildren: RootRouteChildren = {
   GalleryRoute: GalleryRoute,
   ProgramsRoute: ProgramsRoute,
   AdminAboutRoute: AdminAboutRoute,
+  AdminActivitiesRoute: AdminActivitiesRoute,
   AdminDashboardRoute: AdminDashboardRoute,
   AdminHeroRoute: AdminHeroRoute,
   AdminLoginRoute: AdminLoginRoute,
