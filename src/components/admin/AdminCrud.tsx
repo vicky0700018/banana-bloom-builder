@@ -23,7 +23,8 @@ export interface CrudConfig<T> {
   toggle?: boolean;
 }
 
-type Row = Record<string, unknown> & { id: string };
+type Row = { id: string };
+const get = (o: unknown, k: string) => (o as Record<string, unknown>)[k];
 
 export function AdminCrud<T extends Row>({
   items,
@@ -61,7 +62,7 @@ export function AdminCrud<T extends Row>({
   const toggleStatus = (item: T) =>
     onChange(
       items.map((i) =>
-        i.id === item.id ? ({ ...i, status: i.status === "active" ? "inactive" : "active" } as T) : i,
+        i.id === item.id ? ({ ...i, status: get(i, "status") === "active" ? "inactive" : "active" } as T) : i,
       ),
     );
 
@@ -97,13 +98,13 @@ export function AdminCrud<T extends Row>({
                 <tr key={item.id} className="border-t border-border align-top">
                   {columns.map((c) => (
                     <td key={c.key} className="max-w-[22rem] px-5 py-4">
-                      <span className="line-clamp-2">{String(item[c.key] ?? "—")}</span>
+                      <span className="line-clamp-2">{String(get(item, c.key) ?? "—")}</span>
                     </td>
                   ))}
                   {config.toggle ? (
                     <td className="px-5 py-4">
                       <button type="button" onClick={() => toggleStatus(item)}>
-                        <StatusBadge status={String(item.status)} />
+                        <StatusBadge status={String(get(item, "status"))} />
                       </button>
                     </td>
                   ) : null}
@@ -133,7 +134,7 @@ export function AdminCrud<T extends Row>({
 
       {draft ? (
         <AdminModal
-          title={isNew ? addLabel : `Edit ${String(draft[config.titleKey] ?? "item")}`}
+          title={isNew ? addLabel : `Edit ${String(get(draft, config.titleKey) ?? "item")}`}
           onClose={() => setDraft(null)}
           footer={
             <>
@@ -146,7 +147,7 @@ export function AdminCrud<T extends Row>({
         >
           <div className="grid gap-4">
             {config.fields.map((f) => {
-              const value = String(draft[f.key] ?? "");
+              const value = String(get(draft, f.key) ?? "");
               if (f.type === "textarea")
                 return (
                   <TextArea
@@ -182,7 +183,7 @@ export function AdminCrud<T extends Row>({
 
       {pendingDelete ? (
         <ConfirmDelete
-          label={String(pendingDelete[config.titleKey] ?? "this item")}
+          label={String(get(pendingDelete, config.titleKey) ?? "this item")}
           onCancel={() => setPendingDelete(null)}
           onConfirm={() => {
             onChange(items.filter((i) => i.id !== pendingDelete.id));
